@@ -4,18 +4,17 @@ var twitter = require('ntwitter');
 var read = require('read');
 var Seq = require('seq');
 var credentials = require('./credentials.js');
+var config = require('./config.js');
 var t = new twitter({
 	consumer_key: credentials.consumer_key,
 	consumer_secret: credentials.consumer_secret,
 	access_token_key: credentials.access_token_key,
 	access_token_secret: credentials.access_token_secret
 });
-var botname = 'Nezzybear';
-var admins = 'Nezzerath';
-var client = new ircLib.Client('irc.freenode.net', botname, {
-channels: ['##phalanxia', '##madison'],
-userName: botname,
-realName: 'Nezz'
+var client = new ircLib.Client(config.server, config.botname, {
+channels: config.channels,
+userName: config.botname,
+realName: config.realname
 });
 var charsymbol = '$';
 client.addListener('message', function (from, to, message) {
